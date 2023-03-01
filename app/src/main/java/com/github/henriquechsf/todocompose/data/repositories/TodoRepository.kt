@@ -2,9 +2,11 @@ package com.github.henriquechsf.todocompose.data.repositories
 
 import com.github.henriquechsf.todocompose.data.TodoDao
 import com.github.henriquechsf.todocompose.data.models.TodoTask
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+@ViewModelScoped
 class TodoRepository @Inject constructor(private val todoDao: TodoDao) {
 
     val getAllTasks = todoDao.getAllTasks()
