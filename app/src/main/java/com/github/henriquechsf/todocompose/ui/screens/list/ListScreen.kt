@@ -1,11 +1,14 @@
 package com.github.henriquechsf.todocompose.ui.screens.list
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,10 +16,15 @@ import com.github.henriquechsf.todocompose.R
 
 @Composable
 fun ListScreen(
-    navigateToTaskScreen: (Int) -> Unit
+    navigateToTaskScreen: (Int) -> Unit,
 ) {
     Scaffold(
-        content = {},
+        topBar = {
+            ListAppBar()
+        },
+        content = {
+            Column(modifier = Modifier.padding(it)) {}
+        },
         floatingActionButton = {
             ListFab(onFabClicked = navigateToTaskScreen)
         }
@@ -25,7 +33,7 @@ fun ListScreen(
 
 @Composable
 fun ListFab(
-    onFabClicked: (Int) -> Unit
+    onFabClicked: (Int) -> Unit,
 ) {
     FloatingActionButton(onClick = { onFabClicked(-1) }) {
         Icon(
