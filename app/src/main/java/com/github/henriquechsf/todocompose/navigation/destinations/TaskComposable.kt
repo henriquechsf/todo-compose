@@ -1,15 +1,19 @@
 package com.github.henriquechsf.todocompose.navigation.destinations
 
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.github.henriquechsf.todocompose.ui.screens.task.TaskScreen
+import com.github.henriquechsf.todocompose.ui.viewmodels.SharedViewModel
 import com.github.henriquechsf.todocompose.util.Action
 import com.github.henriquechsf.todocompose.util.Constants.TASK_ARGUMENT_KEY
 import com.github.henriquechsf.todocompose.util.Constants.TASK_SCREEN
 
 fun NavGraphBuilder.taskComposable(
+    sharedViewModel: SharedViewModel,
     navigateToListScreen: (Action) -> Unit,
 ) {
 
@@ -20,7 +24,12 @@ fun NavGraphBuilder.taskComposable(
         })
     ) { navBackStackEntry ->
         val taskId = navBackStackEntry.arguments!!.getInt(TASK_ARGUMENT_KEY)
+        sharedViewModel.getSelectedTask(taskId)
+        val selectedTask by sharedViewModel.selectedTask.collectAsState()
 
-        TaskScreen(navigateToListScreen = navigateToListScreen)
+        TaskScreen(
+            selectedTask = selectedTask,
+            navigateToListScreen = navigateToListScreen
+        )
     }
 }

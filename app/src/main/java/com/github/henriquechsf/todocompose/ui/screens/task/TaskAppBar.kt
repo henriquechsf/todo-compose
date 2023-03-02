@@ -19,14 +19,25 @@ import com.github.henriquechsf.todocompose.util.Action
 
 @Composable
 fun TaskAppBar(
-    navigateToListScreen: (Action) -> Unit
+    selectedTask: TodoTask?,
+    navigateToListScreen: (Action) -> Unit,
 ) {
-    NewTaskAppBar(navigateToListScreen = navigateToListScreen)
+    if (selectedTask == null) {
+        NewTaskAppBar(
+            navigateToListScreen = navigateToListScreen
+        )
+    } else {
+        ExistingTaskAppBar(
+            selectedTask = selectedTask,
+            navigateToListScreen = navigateToListScreen
+        )
+    }
+
 }
 
 @Composable
 fun NewTaskAppBar(
-    navigateToListScreen: (Action) -> Unit
+    navigateToListScreen: (Action) -> Unit,
 ) {
     TopAppBar(
         navigationIcon = {
@@ -78,7 +89,7 @@ fun AddAction(
 @Composable
 fun ExistingTaskAppBar(
     selectedTask: TodoTask,
-    navigateToListScreen: (Action) -> Unit
+    navigateToListScreen: (Action) -> Unit,
 ) {
     TopAppBar(
         navigationIcon = {
