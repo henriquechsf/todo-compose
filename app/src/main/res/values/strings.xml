@@ -11,4 +11,7 @@
     <string name="delete_all_action">Delete All</string>
     <string name="empty_content_icon">No tasks icon</string>
     <string name="empty_content">No tasks found</string>
+    <string name="add_task">Add Task</string>
+    <string name="back_icon">Back icon</string>
+    <string name="add_task_icon">Add task icon</string>
 </resources>
