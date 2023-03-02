@@ -2,6 +2,8 @@ package com.github.henriquechsf.todocompose.ui.screens.list
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -20,8 +22,17 @@ import com.github.henriquechsf.todocompose.ui.theme.*
 @Composable
 fun ListContent(
     modifier: Modifier = Modifier,
+    tasks: List<TodoTask>,
+    navigateToTaskScreen: (taskId: Int) -> Unit,
 ) {
-
+    LazyColumn {
+        items(items = tasks, key = { task -> task.id }) {task ->
+            TaskItem(
+                todoTask = task,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
