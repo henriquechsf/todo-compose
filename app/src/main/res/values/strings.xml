@@ -9,4 +9,6 @@
     <string name="search_action">Search tasks</string>
     <string name="sort_action">Sort tasks</string>
     <string name="delete_all_action">Delete All</string>
+    <string name="empty_content_icon">No tasks icon</string>
+    <string name="empty_content">No tasks found</string>
 </resources>
