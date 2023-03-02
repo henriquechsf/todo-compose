@@ -12,7 +12,7 @@ import com.github.henriquechsf.todocompose.util.Constants.LIST_SCREEN
 @Composable
 fun SetupNavigation(
     navController: NavHostController,
-    sharedViewModel: SharedViewModel
+    sharedViewModel: SharedViewModel,
 ) {
     val screen = remember(navController) {
         Screens(navController = navController)

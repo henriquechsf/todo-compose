@@ -14,4 +14,6 @@
     <string name="add_task">Add Task</string>
     <string name="back_icon">Back icon</string>
     <string name="add_task_icon">Add task icon</string>
+    <string name="delete_icon">Delete icon</string>
+    <string name="update_icon">Update icon</string>
 </resources>
