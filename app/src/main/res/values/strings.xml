@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Todo Compose</string>
 
+    <string name="search_icon">Search icon</string>
+    <string name="close_icon">Close icon</string>
+    <string name="search_placeholder">Search</string>
+    <string name="list_screen_title">Tasks</string>
     <string name="add_button">Add button</string>
     <string name="search_action">Search tasks</string>
     <string name="sort_action">Sort tasks</string>

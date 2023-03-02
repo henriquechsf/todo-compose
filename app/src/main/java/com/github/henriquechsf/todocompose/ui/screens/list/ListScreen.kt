@@ -36,7 +36,7 @@ fun ListScreen(
             )
         },
         content = {
-            Column(modifier = Modifier.padding(it)) {}
+            ListContent(modifier = Modifier.padding(it))
         },
         floatingActionButton = {
             ListFab(onFabClicked = navigateToTaskScreen)
