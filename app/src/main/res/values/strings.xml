@@ -22,6 +22,8 @@
     <string name="no_button">No</string>
     <string name="yes_button">Yes</string>
 
+    <string name="delete_all_tasks">Remove all tasks?</string>
+    <string name="delete_all_tasks_confirmation">Are you sure want to remove all tasks? There is no going back after this action.</string>
     <string name="delete_task">Remove \'%1$s\'?</string>
     <string name="delete_task_confirmation">Are you sure want remove \'%1$s\'?</string>
 </resources>
