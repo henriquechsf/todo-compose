@@ -100,7 +100,7 @@ fun DisplaySnackBar(
         if (action != Action.NO_ACTION) {
             scope.launch {
                 val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
-                    message = "${action.name}: $taskTitle",
+                    message = setMessage(action = action, taskTitle = taskTitle),
                     actionLabel = setActionLabel(action = action)
                 )
                 undoDeletedTask(
@@ -113,6 +113,13 @@ fun DisplaySnackBar(
     }
 }
 
+private fun setMessage(action: Action, taskTitle: String): String {
+    return when (action) {
+        Action.DELETE_ALL -> "All tasks removed"
+        else -> "${action.name}: $taskTitle"
+    }
+}
+
 private fun setActionLabel(action: Action): String {
     return if (action.name == "DELETE") "UNDO" else "OK"
 }
@@ -120,7 +127,7 @@ private fun setActionLabel(action: Action): String {
 private fun undoDeletedTask(
     action: Action,
     snackBarResult: SnackbarResult,
-    onUndoClicked: (Action) -> Unit
+    onUndoClicked: (Action) -> Unit,
 ) {
     if (snackBarResult == SnackbarResult.ActionPerformed && action == Action.DELETE) {
         onUndoClicked(Action.UNDO)
