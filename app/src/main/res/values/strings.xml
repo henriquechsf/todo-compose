@@ -21,6 +21,7 @@
     <string name="input_label_description">Description</string>
     <string name="no_button">No</string>
     <string name="yes_button">Yes</string>
+    <string name="to_do_logo">To-do logo</string>
 
     <string name="delete_all_tasks">Remove all tasks?</string>
     <string name="delete_all_tasks_confirmation">Are you sure want to remove all tasks? There is no going back after this action.</string>
