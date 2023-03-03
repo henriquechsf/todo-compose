@@ -19,4 +19,9 @@
     <string name="drop_down_arrow_icon">Drop down arrow icon</string>
     <string name="input_label_title">Title</string>
     <string name="input_label_description">Description</string>
+    <string name="no_button">No</string>
+    <string name="yes_button">Yes</string>
+
+    <string name="delete_task">Remove \'%1$s\'?</string>
+    <string name="delete_task_confirmation">Are you sure want remove \'%1$s\'?</string>
 </resources>
