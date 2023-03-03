@@ -15,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,6 +38,9 @@ class SharedViewModel @Inject constructor(
     private val _allTasks = MutableStateFlow<RequestState<List<TodoTask>>>(RequestState.Idle)
     val allTasks: StateFlow<RequestState<List<TodoTask>>> = _allTasks
 
+    private val _searchedTasks = MutableStateFlow<RequestState<List<TodoTask>>>(RequestState.Idle)
+    val searchedTasks: StateFlow<RequestState<List<TodoTask>>> = _searchedTasks
+
     fun getAllTasks() {
         _allTasks.value = RequestState.Loading
 
@@ -49,6 +53,22 @@ class SharedViewModel @Inject constructor(
         } catch (e: Exception) {
             _allTasks.value = RequestState.Error(e)
         }
+    }
+
+    fun searchDatabase(searchQuery: String) {
+        _searchedTasks.value = RequestState.Loading
+
+        try {
+            viewModelScope.launch {
+                repository.searchDatabase(searchQuery = "%$searchQuery%").collect { searchedTasks ->
+                    _searchedTasks.value = RequestState.Success(searchedTasks)
+                }
+            }
+        } catch (e: Exception) {
+            _searchedTasks.value = RequestState.Error(e)
+        }
+
+        searchAppBarState.value = SearchAppBarState.TRIGGERED
     }
 
     private val _selectedTask = MutableStateFlow<TodoTask?>(null)
@@ -71,6 +91,7 @@ class SharedViewModel @Inject constructor(
             )
             repository.addTask(todoTask = todoTask)
         }
+        searchAppBarState.value = SearchAppBarState.CLOSED
     }
 
     private fun updateTask() {

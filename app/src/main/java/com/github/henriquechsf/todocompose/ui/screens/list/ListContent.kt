@@ -19,22 +19,45 @@ import com.github.henriquechsf.todocompose.data.models.Priority
 import com.github.henriquechsf.todocompose.data.models.TodoTask
 import com.github.henriquechsf.todocompose.ui.theme.*
 import com.github.henriquechsf.todocompose.util.RequestState
+import com.github.henriquechsf.todocompose.util.SearchAppBarState
 
 @Composable
 fun ListContent(
     modifier: Modifier = Modifier,
-    tasks: RequestState<List<TodoTask>>,
+    allTasks: RequestState<List<TodoTask>>,
+    searchedTasks: RequestState<List<TodoTask>>,
+    searchAppBarState: SearchAppBarState,
     navigateToTaskScreen: (taskId: Int) -> Unit,
 ) {
-    if (tasks is RequestState.Success) {
-        if (tasks.data.isEmpty()) {
-            EmptyContent()
-        } else {
-            DisplayTasks(
-                tasks = tasks.data,
+    if (searchAppBarState == SearchAppBarState.TRIGGERED) {
+        if (searchedTasks is RequestState.Success) {
+            HandleListContent(
+                tasks = searchedTasks.data,
                 navigateToTaskScreen = navigateToTaskScreen
             )
         }
+    } else {
+        if (allTasks is RequestState.Success) {
+            HandleListContent(
+                tasks = allTasks.data,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
+        }
+    }
+}
+
+@Composable
+fun HandleListContent(
+    tasks: List<TodoTask>,
+    navigateToTaskScreen: (taskId: Int) -> Unit,
+) {
+    if (tasks.isEmpty()) {
+        EmptyContent()
+    } else {
+        DisplayTasks(
+            tasks = tasks,
+            navigateToTaskScreen = navigateToTaskScreen
+        )
     }
 }
 
