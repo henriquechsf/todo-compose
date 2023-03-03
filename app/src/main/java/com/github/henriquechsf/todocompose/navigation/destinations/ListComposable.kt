@@ -2,6 +2,7 @@ package com.github.henriquechsf.todocompose.navigation.destinations
 
 import android.util.Log
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -30,9 +31,12 @@ fun NavGraphBuilder.listComposable(
             sharedViewModel.action.value = action
         }
 
+        val databaseAction by sharedViewModel.action
+
         ListScreen(
+            action = databaseAction,
             navigateToTaskScreen = navigateToTaskScreen,
-            sharedViewModel = sharedViewModel
+            sharedViewModel = sharedViewModel,
         )
     }
 }
