@@ -1,6 +1,7 @@
 package com.github.henriquechsf.todocompose.ui.screens.splash
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.window.SplashScreen
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -19,6 +20,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.github.henriquechsf.todocompose.R
 import com.github.henriquechsf.todocompose.ui.theme.LOGO_HEIGHT
@@ -48,6 +50,11 @@ fun SplashScreen(
         navigateToListScreen()
     }
 
+    Splash(offsetState = offsetState, alphaState = alphaState)
+}
+
+@Composable
+fun Splash(offsetState: Dp, alphaState: Float) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -79,8 +86,6 @@ fun getLogo(): Int {
 @Composable
 fun SplashScreenPreview() {
     TodoComposeTheme {
-        SplashScreen(
-            navigateToListScreen = {}
-        )
+        Splash(offsetState = 0.dp, alphaState = 1f)
     }
 }
