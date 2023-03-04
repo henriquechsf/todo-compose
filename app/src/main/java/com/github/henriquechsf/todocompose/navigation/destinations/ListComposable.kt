@@ -1,6 +1,5 @@
 package com.github.henriquechsf.todocompose.navigation.destinations
 
-import android.util.Log
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,11 +35,11 @@ fun NavGraphBuilder.listComposable(
         LaunchedEffect(key1 = action) {
             if (action != myAction) {
                 myAction = action
-                sharedViewModel.action.value = action
+                sharedViewModel.updateAction(action)
             }
         }
 
-        val databaseAction by sharedViewModel.action
+        val databaseAction = sharedViewModel.action
 
         ListScreen(
             action = databaseAction,
